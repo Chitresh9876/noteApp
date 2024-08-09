@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Grouplist from "./Grouplist";
 import axios from 'axios';
 import './sidemenu.css';
+import Avatar from "@mui/material/Avatar";
+import AddIcon from "@mui/icons-material/Add";
+
 
 const Sidemenu = () => {
   const [list, setList] = useState([]);
@@ -30,11 +33,22 @@ const Sidemenu = () => {
         style={{
           height: `${86}vh`,
           overflowY: "scroll",
+          // position:"absolute"
         }}
       >
         {list.map((item, index) => (
           <Grouplist key={index} name={item?.groupName} />
         ))}
+        <Avatar
+          sx={{
+            bgcolor: "#16008B",
+            top: "27rem",
+            left: "10rem",
+            position: "relative",
+          }}
+        >
+          <AddIcon />
+        </Avatar>
       </div>
     </div>
   );
