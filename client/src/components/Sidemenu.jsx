@@ -4,9 +4,12 @@ import axios from "axios";
 import "./sidemenu.css";
 import Avatar from "@mui/material/Avatar";
 import AddIcon from "@mui/icons-material/Add";
+import { Button } from "@mui/material";
+import Popup from "./Popup";
 
 const Sidemenu = () => {
   const [list, setList] = useState([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:5000/group/fetchAllGroup")
@@ -27,7 +30,7 @@ const Sidemenu = () => {
   return (
     <div
       style={{
-        width: "17rem",
+        width: "27rem",
         height: "100vh",
         padding: "1rem 0rem 1rem 2rem",
         textAlign: "center",
@@ -69,6 +72,7 @@ const Sidemenu = () => {
           }}
         >
           <Avatar
+            onClick={() => setOpen(true)}
             sx={{
               // border: "1px solid black",
               bgcolor: "#16008B",
@@ -83,6 +87,7 @@ const Sidemenu = () => {
           </Avatar>
         </div>
       </div>
+      <Popup open={open} setOpen={setOpen} />
     </div>
   );
 };
