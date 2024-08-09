@@ -22,8 +22,8 @@ const Sidemenu = () => {
   return (
     <div
       style={{
-        width: "15rem",
-        padding: "1rem 1rem 1rem 2rem",
+        width: "17rem",
+        padding: "1rem 0rem 1rem 2rem",
         textAlign: "center",
         overflowY: "hidden",
       }}

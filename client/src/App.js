@@ -5,7 +5,7 @@ import Sidemenu from "./components/Sidemenu";
 
 function App() {
   return (
-    <Stack direction={"row"} className="">
+    <Stack direction={"row"}>
       <Sidemenu/>
       <Chatarea/>
     </Stack>
