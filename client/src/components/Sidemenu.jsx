@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Grouplist from "./Grouplist";
-import axios from 'axios';
-import './sidemenu.css';
+import axios from "axios";
+import "./sidemenu.css";
 import Avatar from "@mui/material/Avatar";
 import AddIcon from "@mui/icons-material/Add";
-
 
 const Sidemenu = () => {
   const [list, setList] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/group/fetchAllGroup")
-      .then((res) => { 
+    axios
+      .get("http://localhost:5000/group/fetchAllGroup")
+      .then((res) => {
         console.log(res?.data?.allGroups);
-        setList(res?.data?.allGroups);
+        // res?.data?.allGroups
+        setList((pre) => {
+          let updatedValue = { ...pre };
+          updatedValue = res?.data?.allGroups;
+          return updatedValue;
+        });
       })
-      .catch((error) => { 
+      .catch((error) => {
         console.log(error);
-      })
+      });
   }, []);
 
   return (
@@ -37,7 +42,12 @@ const Sidemenu = () => {
         }}
       >
         {list.map((item, index) => (
-          <Grouplist key={index} name={item?.groupName} />
+          <Grouplist
+            key={index}
+            groupName={item?.groupName}
+            _id={item?._id}
+            color={item?.color}
+          />
         ))}
         <Avatar
           sx={{

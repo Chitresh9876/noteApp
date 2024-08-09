@@ -4,15 +4,15 @@ export const ActiveUserContext = createContext();
 
 export const ActiveUserProvider = ({ children }) => {
   const [activeUserData, setActiveUserData] = useState({
-    id: null,
+    _id: null,
     groupName: null,
     color: null,
   });
   const updateValue = (opt) => {
     setActiveUserData((prev) => {
       const prevVal = { ...prev };
-      prevVal.id = opt.id;
-      prevVal.groupName = opt.grpName;
+      prevVal._id = opt._id;
+      prevVal.groupName = opt.groupName;
       prevVal.color = opt.color;
       return prevVal;
     });
