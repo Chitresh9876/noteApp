@@ -69,3 +69,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 dsfsdfds
+
+<!-- to test your provider:
+   <ActiveUserProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ActiveUserProvider>
+
+
+  to view your result:
+  const option = {
+  id: "kya karega jaan ke ",
+  grpName: "jai haleluia",
+  color: "pookie",
+};
+
+import { useContext } from "react";
+import { ActiveUserContext } from "./context/activeuser";
+
+
+  const activeUsercon = useContext(ActiveUserContext);
+  const { activeUserData, updateValue } = activeUsercon;
+  console.log(activeUserData);
+
+       <p>{`le dekh le ${activeUserData.id} ${activeUserData.color}`}</p>
+      <button onClick={() => updateValue(option)}>dabao mujhe</button>
+   -->
