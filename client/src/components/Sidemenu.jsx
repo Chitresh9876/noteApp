@@ -28,37 +28,60 @@ const Sidemenu = () => {
     <div
       style={{
         width: "17rem",
+        height: "100vh",
         padding: "1rem 0rem 1rem 2rem",
         textAlign: "center",
         overflowY: "hidden",
+        position: "relative",
+        // border: "1px solid red",
       }}
     >
       <h2 style={{ marginTop: "1.5rem" }}>Pocket Notes</h2>
       <div
-        style={{
-          height: `${86}vh`,
-          overflowY: "scroll",
-          // position:"absolute"
-        }}
+      // sx={{  width: "100%", border: "1px solid red" }}
       >
-        {list.map((item, index) => (
-          <Grouplist
-            key={index}
-            groupName={item?.groupName}
-            _id={item?._id}
-            color={item?.color}
-          />
-        ))}
-        <Avatar
-          sx={{
-            bgcolor: "#16008B",
-            top: "27rem",
-            left: "10rem",
-            position: "relative",
+        <div
+          style={{
+            height: `${86}vh`,
+            overflowY: "scroll",
+            width: "100%",
+
+            // position:"absolute"
           }}
         >
-          <AddIcon />
-        </Avatar>
+          {list.map((item, index) => (
+            <Grouplist
+              key={index}
+              groupName={item?.groupName}
+              _id={item?._id}
+              color={item?.color}
+            />
+          ))}
+        </div>
+        <div
+          style={{
+            width: "100%",
+            position: "absolute",
+            left: "-1.3rem",
+            bottom: "4rem",
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Avatar
+            sx={{
+              // border: "1px solid black",
+              bgcolor: "#16008B",
+              // top: "27rem",
+              // left: "10rem",
+              // bottom: "3rem",
+              // left: ".9rem",
+              // position: "relative",
+            }}
+          >
+            <AddIcon />
+          </Avatar>
+        </div>
       </div>
     </div>
   );
