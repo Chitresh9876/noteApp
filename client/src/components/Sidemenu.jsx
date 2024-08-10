@@ -12,7 +12,7 @@ const Sidemenu = () => {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/group/fetchAllGroup")
+      .get("https://note-app-ruddy-xi.vercel.app/group/fetchAllGroup")
       .then((res) => {
         console.log(res?.data?.allGroups);
         // res?.data?.allGroups
