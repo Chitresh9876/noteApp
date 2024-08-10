@@ -10,11 +10,12 @@ import Popup from "./Popup";
 const Sidemenu = () => {
   const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    axios
+
+  const fetchAllGroup = async() => {
+    await axios
       .get("http://localhost:5000/group/fetchAllGroup")
       .then((res) => {
-        console.log(res?.data?.allGroups);
+        // console.log(res?.data?.allGroups);
         // res?.data?.allGroups
         setList((pre) => {
           let updatedValue = { ...pre };
@@ -25,6 +26,9 @@ const Sidemenu = () => {
       .catch((error) => {
         console.log(error);
       });
+  }
+  useEffect(() => {
+    fetchAllGroup();
   }, []);
 
   return (
@@ -45,7 +49,7 @@ const Sidemenu = () => {
       >
         <div
           style={{
-            height: `${86}vh`,
+            height: `${88}vh`,
             overflowY: "scroll",
             width: "100%",
 
@@ -87,7 +91,7 @@ const Sidemenu = () => {
           </Avatar>
         </div>
       </div>
-      <Popup open={open} setOpen={setOpen} />
+      <Popup open={open} setOpen={setOpen} fetchAllGroup={fetchAllGroup} />
     </div>
   );
 };

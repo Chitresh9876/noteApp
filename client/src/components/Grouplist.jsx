@@ -9,7 +9,7 @@ const Grouplist = ({ groupName, _id, color }) => {
   // const handleList = () => {
   //   console.log("clicked");
   // };
-  console.log(activeUserData);
+  // console.log("activerUser", activeUserData);
   return (
     <Stack
       direction={"row"}

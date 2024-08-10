@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   Box,
@@ -7,9 +7,40 @@ import {
   Stack,
   Button,
 } from "@mui/material";
-const Popup = ({ open, setOpen }) => {
-  const colors = ["#32e", "#97e", "#986", "#123", "#6819"];
+import axios from "axios";
+const Popup = ({ open, setOpen, fetchAllGroup }) => {
+  const colors = [
+    "#B38BFA",
+    "#FF79F2",
+    "#43E6FC",
+    "#F19576",
+    "#0047FF",
+    "#6691FF",
+  ];
+
+  const [color, setColor] = useState("");
+  const [name, setName] = useState("");
+
   const handleClose = () => setOpen(false);
+
+  const handleCreateGroup = async (e) => {
+    // console.log(color, name);
+    e.preventDefault();
+    await axios
+      .post("http://localhost:5000/group/create", {
+        groupName: name,
+        color,
+      })
+      .then((res) => {
+        console.log(res?.data);
+        fetchAllGroup();
+        handleClose();
+      })
+      .catch((error) => {
+        console.log(error?.message);
+      });
+  };
+
   return (
     <Modal
       open={open}
@@ -81,10 +112,15 @@ const Popup = ({ open, setOpen }) => {
                 id="outlined-search"
                 label="Enter Group Name"
                 type="text"
+                onChange={(e) => setName(e.target.value)}
               />
             </label>
           </div>
-          <Stack direction={"row"} justifyContent={"space-between"}>
+          <Stack
+            direction={"row"}
+            justifyContent={"start"}
+            alignItems={"center"}
+          >
             <Typography>Choose Color</Typography>
             <Stack
               direction={"row"}
@@ -109,25 +145,10 @@ const Popup = ({ open, setOpen }) => {
                         },
                       },
                     }}
+                    onClick={() => setColor(item)}
                   ></Box>
                 );
               })}
-              <div
-                style={{
-                  filter: "drop-shadow(0 0 0.2rem #000)",
-                  //   border: "1px solid black",
-                  backgroundColor: "#fff",
-                  height: "3rem",
-                  width: "3rem",
-                  borderRadius: "50%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "1.5rem",
-                }}
-              >
-                +
-              </div>
             </Stack>
           </Stack>
           <Button
@@ -138,6 +159,7 @@ const Popup = ({ open, setOpen }) => {
               right: ".1rem",
               bgcolor: "#19ee",
             }}
+            onClick={handleCreateGroup}
           >
             Create
           </Button>

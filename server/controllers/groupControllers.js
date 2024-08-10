@@ -3,6 +3,8 @@ import { failtureResponse, successResponse } from "../services/response.js";
 // import Group from "../models/groupModel.js";
 
 export const createGroup = async (req, res) => {
+    // console.log("create")
+    
     const { groupName, color } = req.body;
 
     if (!groupName || !color) {
