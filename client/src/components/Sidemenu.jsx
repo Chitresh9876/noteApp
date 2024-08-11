@@ -15,8 +15,6 @@ const Sidemenu = () => {
     await axios
       .get("http://localhost:5000/group/fetchAllGroup")
       .then((res) => {
-        // console.log(res?.data?.allGroups);
-        // res?.data?.allGroups
         setList((pre) => {
           let updatedValue = { ...pre };
           updatedValue = res?.data?.allGroups;
@@ -40,20 +38,16 @@ const Sidemenu = () => {
         textAlign: "center",
         overflowY: "hidden",
         position: "relative",
-        // border: "1px solid red",
       }}
     >
       <h2 style={{ marginTop: "1.5rem" }}>Pocket Notes</h2>
       <div
-      // sx={{  width: "100%", border: "1px solid red" }}
       >
         <div
           style={{
             height: `${88}vh`,
             overflowY: "scroll",
             width: "100%",
-
-            // position:"absolute"
           }}
         >
           {list.map((item, index) => (
@@ -78,13 +72,7 @@ const Sidemenu = () => {
           <Avatar
             onClick={() => setOpen(true)}
             sx={{
-              // border: "1px solid black",
               bgcolor: "#16008B",
-              // top: "27rem",
-              // left: "10rem",
-              // bottom: "3rem",
-              // left: ".9rem",
-              // position: "relative",
             }}
           >
             <AddIcon />

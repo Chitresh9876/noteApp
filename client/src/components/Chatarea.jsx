@@ -20,6 +20,8 @@ const Chatarea = () => {
   const [note, setNote] = useState("");
   const [savedNote, setSavedNotes] = useState([]);
   const { activeUserData } = useContext(ActiveUserContext);
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("");
 
   useEffect(() => {
     const user = activeUserData?._id !== null;
@@ -30,6 +32,8 @@ const Chatarea = () => {
 
   const fetchNotes = async () => {
     setSavedNotes([]);
+    setName(activeUserData?.groupName);
+    setColor(activeUserData?.color);
     await axios.get(`http://localhost:5000/notes/fetchAllNotes/${activeUserData?._id}`)
       .then((res) => {
         const data = res?.data?.result;
@@ -60,7 +64,6 @@ const Chatarea = () => {
         console.log(error?.message);
       });
   };
-  const name = "Chitresh";
   return (
     <div
       style={{
@@ -117,7 +120,7 @@ const Chatarea = () => {
               px={2}
               sx={{ "&:hover": { cursor: "pointer" }, background: "#001F8B" }}
             >
-              <Avatar sx={{ bgcolor: deepOrange[500] }}>
+                <Avatar sx={{background: color}}>
                 {name.charAt(0).toUpperCase()}
               </Avatar>
               <p

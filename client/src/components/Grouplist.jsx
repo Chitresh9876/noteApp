@@ -20,7 +20,7 @@ const Grouplist = ({ groupName, _id, color }) => {
       onClick={() => updateValue({ groupName, _id, color })}
       sx={{ "&:hover": { cursor: "pointer" } }}
     >
-      <Avatar sx={{ bgcolor: deepOrange[500] }}>
+      <Avatar sx={{ bgcolor: color }}>
         {groupName.charAt(0).toUpperCase()}
       </Avatar>
       <p className="" style={{ fontSize: "1.2rem", fontWeight: "bold" }}>

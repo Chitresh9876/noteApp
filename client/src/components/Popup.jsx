@@ -24,21 +24,22 @@ const Popup = ({ open, setOpen, fetchAllGroup }) => {
   const handleClose = () => setOpen(false);
 
   const handleCreateGroup = async (e) => {
-    // console.log(color, name);
     e.preventDefault();
-    await axios
-      .post("http://localhost:5000/group/create", {
-        groupName: name,
-        color,
-      })
-      .then((res) => {
-        console.log(res?.data);
-        fetchAllGroup();
-        handleClose();
-      })
-      .catch((error) => {
-        console.log(error?.message);
-      });
+    if (name.length && color.length) {
+      await axios
+        .post("http://localhost:5000/group/create", {
+          groupName: name,
+          color,
+        })
+        .then((res) => {
+          console.log(res?.data);
+          fetchAllGroup();
+          handleClose();
+        })
+        .catch((error) => {
+          console.log(error?.message);
+        });
+    }
   };
 
   return (
@@ -66,7 +67,6 @@ const Popup = ({ open, setOpen, fetchAllGroup }) => {
           sx={{
             width: "79%",
             height: "78%",
-            // border: "1px solid red",
             display: "flex",
             flexDirection: "column",
             position: "relative",
@@ -79,7 +79,6 @@ const Popup = ({ open, setOpen, fetchAllGroup }) => {
           <div
             style={{
               display: "flex",
-              //   border: "1px solid red",
               alignItems: "center",
               justifyContent: "space-between",
               width: "100%",
